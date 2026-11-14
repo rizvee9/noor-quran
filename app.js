@@ -713,7 +713,7 @@
   }
 
   // ---------- Whole Quran reader ----------
-  const QURAN_SCRIPT_SRC = 'js/quran-text.js?v=3';
+  const QURAN_SCRIPT_SRC = 'quran-text.js?v=3';
   let quranLoadPromise = null;
   let quranQuery = '';
   let quranCurrent = null;
