@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f3d2e" />
+  <title>Noor – Your Quran Companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=23" />
+</head>
+<body>
+  <div id="app" class="app" data-theme="dark">
+    <!-- Splash -->
+    <section id="screen-splash" class="screen active splash">
+      <div class="splash-inner">
+        <div class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 120 120" class="crescent">
+            <defs>
+              <linearGradient id="gold" x1="0" x2="1">
+                <stop offset="0%" stop-color="#e7c873"/>
+                <stop offset="100%" stop-color="#c9a227"/>
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="46" fill="none" stroke="url(#gold)" stroke-width="2" opacity="0.5"/>
+            <path d="M78 30a34 34 0 1 0 0 60a28 28 0 1 1 0-60z" fill="url(#gold)"/>
+            <circle cx="84" cy="38" r="4" fill="url(#gold)"/>
+          </svg>
+        </div>
+        <h1 class="brand">Noor</h1>
+        <p class="tagline">Your Quran Companion</p>
+        <p class="splash-note">Guidance, comfort, and reflection through the Quran</p>
+      </div>
+    </section>
+
+    <!-- Onboarding -->
+    <section id="screen-onboarding" class="screen onboarding">
+      <div class="onboard-card">
+        <div class="pattern-bar"></div>
+        <h2>Welcome to Noor</h2>
+        <p class="lead">A peaceful space to seek comfort and guidance through the Holy Quran during life’s challenges.</p>
+        <ul class="feature-list">
+          <li><span class="dot"></span>Share your feelings in a private, supportive conversation</li>
+          <li><span class="dot"></span>Discover relevant Quranic verses with translations and reflection</li>
+          <li><span class="dot"></span>Learn from stories of the Prophets and people in the Quran</li>
+          <li><span class="dot"></span>Receive gentle reminders and authentic duas</li>
+        </ul>
+        <div class="disclaimer-box">
+          <strong>Important:</strong> Noor offers spiritual reflection based on verified Quranic sources. It is not a substitute for qualified scholars, medical care, or mental health professionals.
+        </div>
+        <button class="btn primary" id="btn-start">Begin</button>
+      </div>
+    </section>
+
+    <!-- Main shell -->
+    <div id="main-shell" class="shell hidden">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="topbar-eyebrow">Assalamu alaikum</p>
+          <h2 id="topbar-title">Home</h2>
+        </div>
+        <button class="icon-btn" id="btn-theme" aria-label="Toggle theme" title="Toggle theme">☾</button>
+      </header>
+
+      <main class="content">
+        <!-- Home -->
+        <section id="view-home" class="view active">
+          <div class="hero-card">
+            <p class="hero-greeting" id="home-greeting">May your heart find peace today.</p>
+            <p class="hero-sub">Share what is on your mind, and explore verses, stories, and duas for your situation.</p>
+            <button class="btn primary" data-nav="chat">Talk to Noor</button>
+          </div>
+
+          <div class="section-head">
+            <h3>Daily Verse</h3>
+          </div>
+          <div class="card verse-card clickable-card" id="daily-verse" data-nav="guidance" role="button" tabindex="0"></div>
+
+          <div class="section-head"><h3>Prayer</h3><p>Today’s times and reminders</p></div>
+          <button type="button" class="card prayer-next-card" id="home-next-prayer" data-nav="prayer"></button>
+
+          <div class="quick-grid">
+            <button class="quick-card" data-nav="chat">
+              <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 15a3 3 0 0 1-3 3H8l-4 3V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v9Z"/><path d="M8 9h8M8 12h5"/></svg></span>
+              <span>AI Companion</span><small>Share your feelings</small>
+            </button>
+            <button class="quick-card" data-nav="quran">
+              <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.7C10 5.2 7.5 4.6 4 4.6v13c3.5 0 6 .6 8 2.1 2-1.5 4.5-2.1 8-2.1v-13c-3.5 0-6 .6-8 2.1Z"/><path d="M12 6.7v13"/></svg></span>
+              <span>Read Quran</span><small>All 114 surahs</small>
+            </button>
+            <button class="quick-card" data-nav="prayer">
+              <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><path d="M5 20v-6.2c0-2.6 3-4.3 7-7.3 4 3 7 4.7 7 7.3V20"/><path d="M9 20v-4.2a3 3 0 0 1 6 0V20"/><path d="M12 3.2v2"/></svg></span>
+              <span>Prayer Times</span><small>Times &amp; reminders</small>
+            </button>
+            <button class="quick-card" id="quick-qibla">
+              <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.4"/><path d="m15.6 8.4-2.1 5.1-5.1 2.1 2.1-5.1 5.1-2.1Z"/><path d="M12 3.6v1.5M20.4 12H18.9M12 20.4v-1.5M3.6 12h1.5"/></svg></span>
+              <span>Qibla</span><small>Direction to the Kaaba</small>
+            </button>
+            <button class="quick-card" data-nav="guidance">
+              <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></svg></span>
+              <span>Quranic Guidance</span><small>Verses &amp; reflection</small>
+            </button>
+            <button class="quick-card" data-nav="stories">
+              <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20"/><circle cx="9.5" cy="7.5" r="3"/><path d="M17 11a3 3 0 0 0 0-6"/><path d="M21 20v-1.5a4 4 0 0 0-3-3.8"/></svg></span>
+              <span>Quranic Stories</span><small>Lessons &amp; patience</small>
+            </button>
+            <button class="quick-card" data-nav="duas">
+              <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2s-7.5-4.5-7.5-9.4A4.4 4.4 0 0 1 12 7.5a4.4 4.4 0 0 1 7.5 3.3c0 4.9-7.5 9.4-7.5 9.4Z"/></svg></span>
+              <span>Duas</span><small>Supplications</small>
+            </button>
+            <button class="quick-card" data-nav="reflection">
+              <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
+              <span>Daily Reflection</span><small>Pause &amp; reflect</small>
+            </button>
+            <button class="quick-card" data-nav="saved">
+              <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4V4Z"/></svg></span>
+              <span>Saved</span><small>Favourites</small>
+            </button>
+          </div>
+
+          <div class="section-head"><h3>Daily Reflection</h3></div>
+          <div class="card reflection-card clickable-card" id="daily-reflection" data-nav="reflection" role="button" tabindex="0"></div>
+        </section>
+
+        <!-- Chat -->
+        <section id="view-chat" class="view">
+          <div class="chat-wrap">
+            <div class="chat-intro card">
+              <p id="chat-intro-text">Assalamu alaikum. Share what is on your heart, and I will offer one relevant Qur’anic verse, a practical step, and a du’a — with references.</p>
+              <p class="chat-intro-note" id="chat-privacy-note">Replies may use a free online AI for a more natural response · not a scholar, therapist, or doctor.</p>
+              <div class="chips" id="prompt-chips"></div>
+            </div>
+            <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
+          </div>
+          <button type="button" id="chat-scroll" class="chat-scroll hidden" aria-label="Scroll to the latest message">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg>
+            <span>Latest</span>
+          </button>
+          <form id="chat-form" class="chat-input-bar">
+            <textarea id="chat-input" rows="1" placeholder="Share what’s on your heart..." aria-label="Message"></textarea>
+            <button type="submit" class="send-btn" aria-label="Send">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12 15-7-5.4 14.4-2.7-5.9-6.9-1.5Z"/><path d="m11.4 13.5 3.5-3.5"/></svg>
+            </button>
+          </form>
+        </section>
+
+        <!-- Guidance -->
+        <section id="view-guidance" class="view">
+          <div class="section-head"><h3>Quranic Guidance</h3><p>Selected verses with explanation and reflection.</p></div>
+          <div id="guidance-list" class="stack"></div>
+        </section>
+
+        <!-- Whole Quran reader -->
+        <section id="view-quran" class="view">
+          <div id="quran-browser">
+            <div class="section-head"><h3>The Holy Quran</h3><p>All 114 surahs • Read the Arabic on its own, with meaning when you want it.</p></div>
+            <div id="quran-continue"></div>
+            <input id="quran-search" class="search" type="search" placeholder="Search surah name or number" />
+            <p id="quran-count" class="muted dua-count"></p>
+            <div id="quran-list" class="quran-list"></div>
+            <p class="muted dua-attribution">Arabic: Quran Uthmani edition • English: Saheeh International, via <a class="source-link" href="https://alquran.cloud" target="_blank" rel="noopener noreferrer">AlQuran Cloud ↗</a>. Verify with a qualified scholar.</p>
+          </div>
+          <div id="quran-reader" class="hidden">
+            <div class="mushaf-topbar">
+              <button type="button" class="mushaf-icon-btn" id="quran-back" aria-label="All surahs">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+              </button>
+              <button type="button" class="mushaf-title-btn" id="quran-nav-list">
+                <span id="quran-sura-name">Surah</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="mushaf-zoom" role="group" aria-label="Arabic text size">
+                <button type="button" id="quran-font-down" aria-label="Smaller Arabic text">A−</button>
+                <button type="button" id="quran-font-up" aria-label="Larger Arabic text">A+</button>
+              </div>
+            </div>
+            <div class="mushaf-subbar">
+              <span id="quran-sura-meta" class="mushaf-meta">Surah • Meccan</span>
+              <label class="meaning-toggle" for="quran-meaning">
+                <span class="meaning-toggle-label">Meaning</span>
+                <input id="quran-meaning" type="checkbox" role="switch" aria-label="Show English meaning" />
+                <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+              </label>
+            </div>
+            <div class="mushaf-audio" id="mushaf-audio">
+              <button type="button" class="ma-play" id="quran-play" aria-label="Play recitation">
+                <svg class="ma-ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
+                <svg class="ma-ic-pause hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1.2"/><rect x="13.4" y="5" width="3.6" height="14" rx="1.2"/></svg>
+              </button>
+              <button type="button" class="ma-info" id="quran-audio-open" aria-label="Open audio player">
+                <span class="ma-title" id="quran-audio-title">Listen to this surah</span>
+                <span class="ma-status" id="quran-audio-status">Choose a reciter</span>
+              </button>
+              <select class="ma-reciter" id="quran-reciter" aria-label="Choose reciter"></select>
+            </div>
+            <div class="mushaf-page" id="mushaf-page">
+              <div class="mushaf-frame">
+                <header class="mushaf-head">
+                  <span class="mushaf-eyebrow" id="mushaf-eyebrow">Surah 1 • Meccan</span>
+                  <h3 class="mushaf-title" id="quran-reader-title" lang="ar" dir="rtl"></h3>
+                  <p class="mushaf-subtitle" id="quran-reader-subtitle"></p>
+                </header>
+                <div class="mushaf-bismillah" id="mushaf-bismillah" lang="ar" dir="rtl"></div>
+                <div id="quran-ayahs" class="mushaf-text" lang="ar" dir="rtl"></div>
+                <div class="mushaf-foot">
+                  <span id="mushaf-foot-name"></span>
+                  <span class="mushaf-foot-orn" aria-hidden="true">۞</span>
+                  <span id="mushaf-foot-ayahs"></span>
+                </div>
+              </div>
+            </div>
+            <p class="mushaf-hint" id="quran-reading-hint">Tap any ayah to see its meaning</p>
+            <div class="mushaf-pager">
+              <button type="button" class="mushaf-page-btn" id="quran-prev" aria-label="Previous surah"></button>
+              <button type="button" class="mushaf-page-btn" id="quran-next" aria-label="Next surah"></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Prayer times -->
+        <section id="view-prayer" class="view">
+          <div class="section-head"><h3>Prayer Times</h3><p>Daily salah times and gentle reminders.</p></div>
+          <div id="prayer-content"></div>
+        </section>
+
+        <!-- Stories -->
+        <section id="view-stories" class="view">
+          <div class="section-head"><h3>Stories of the Quran</h3><p>Accounts of Prophets and lessons relevant to life’s trials.</p></div>
+          <div id="stories-list" class="stack"></div>
+        </section>
+
+        <!-- Duas -->
+        <section id="view-duas" class="view">
+          <div class="section-head"><h3>Dua Collection</h3><p>Qur'anic supplications from Quran.com and Hisn al-Muslim from Sunnah.com.</p></div>
+          <input id="dua-search" class="search" type="search" placeholder="Search by situation (e.g. distress, forgiveness)" />
+          <div id="dua-filters" class="chips dua-filters"></div>
+          <p id="dua-count" class="muted dua-count"></p>
+          <p class="muted dua-attribution">Qur'anic duas curated from <a class="source-link" href="https://quran.com/duas" target="_blank" rel="noopener noreferrer">Quran.com/duas ↗</a>; supplications from <a class="source-link" href="https://sunnah.com/hisn" target="_blank" rel="noopener noreferrer">Hisn al-Muslim on Sunnah.com ↗</a>. Duplicates are omitted. Verify wording and grading with a qualified scholar.</p>
+          <div id="duas-list" class="stack"></div>
+        </section>
+
+        <!-- Daily Reflection (dedicated) -->
+        <section id="view-reflection" class="view">
+          <div class="section-head"><h3>Daily Reflection</h3><p>A reminder to pause, reflect, and return to Allah.</p></div>
+          <div class="card reflection-card" id="reflection-full"></div>
+          <div class="card verse-card" id="reflection-verse"></div>
+        </section>
+
+        <!-- Saved -->
+        <section id="view-saved" class="view">
+          <div class="section-head"><h3>Saved Content</h3><p>Your favourite verses, stories, and duas on this device.</p></div>
+          <div id="saved-list" class="stack"></div>
+        </section>
+
+        <!-- Settings -->
+        <section id="view-settings" class="view">
+          <div class="section-head"><h3>Profile & Settings</h3></div>
+          <div class="card form-card">
+            <label class="field">
+              <span>Language</span>
+              <select id="setting-language">
+                <option value="en">English</option>
+                <option value="dv">Dhivehi (ދިވެހި)</option>
+                <option value="ar">Arabic (العربية)</option>
+              </select>
+            </label>
+            <p class="help">Language preference updates interface labels where available. Quranic Arabic text is always shown in Arabic; translations use verified sources when provided.</p>
+            <label class="field">
+              <span>Theme</span>
+              <select id="setting-theme">
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>AI responses</span>
+              <select id="setting-ai-mode">
+                <option value="free">Free AI (online, more natural)</option>
+                <option value="local">Local companion (offline, on-device)</option>
+              </select>
+            </label>
+            <p class="help" id="ai-mode-help">Free AI uses free online services to generate warmer replies when available. Your message and recent context may be sent to those services; verses and du’as shown from Noor’s library remain verified. For private, offline replies, choose Local companion.</p>
+            <div class="divider"></div>
+            <h4>Privacy</h4>
+            <p class="help">Saved items are stored locally on this device. In Local companion mode, conversations stay on-device in this demo build. No account is required.</p>
+            <button class="btn danger" id="btn-clear-history">Delete chat history</button>
+            <button class="btn secondary" id="btn-clear-saved">Clear saved content</button>
+          </div>
+          <div class="card">
+            <h4>About this demo</h4>
+            <p class="help">This build includes the complete Quran (114 surahs, Arabic with Saheeh International translation, bundled for offline reading), Qur’anic guidance and stories, 342 duas, and daily prayer times with city auto-detection, Qibla direction, a monthly timetable, and optional reminders while the app is open. Prayer times are calculated by Aladhan.com and should be confirmed with your local mosque. Production deployment should connect to authenticated Quran/Hadith datasets, a secure backend, and a retrieval-augmented generation pipeline with strict citation and safety controls.</p>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Primary">
+        <button class="nav-btn active" data-nav="home">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5"/><path d="M6.5 9.5V20h11V9.5"/><path d="M10 20v-5h4v5"/></svg></span>
+          <span>Home</span>
+        </button>
+        <button class="nav-btn" data-nav="quran">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.7C10 5.2 7.5 4.6 4 4.6v13c3.5 0 6 .6 8 2.1 2-1.5 4.5-2.1 8-2.1v-13c-3.5 0-6 .6-8 2.1Z"/><path d="M12 6.7v13"/></svg></span>
+          <span>Quran</span>
+        </button>
+        <button class="nav-btn" data-nav="prayer">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><path d="M5 20v-6.2c0-2.6 3-4.3 7-7.3 4 3 7 4.7 7 7.3V20"/><path d="M9 20v-4.2a3 3 0 0 1 6 0V20"/><path d="M12 3.2v2"/></svg></span>
+          <span>Prayer</span>
+        </button>
+        <button class="nav-btn" data-nav="chat">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 13.6 9 19 10.5 13.6 12 12 17.5 10.4 12 5 10.5 10.4 9 12 3.5Z"/><path d="m18 15 .8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8L18 15Z"/></svg></span>
+          <span>Noor</span>
+        </button>
+        <button class="nav-btn" data-nav="duas">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2s-7.5-4.5-7.5-9.4A4.4 4.4 0 0 1 12 7.5a4.4 4.4 0 0 1 7.5 3.3c0 4.9-7.5 9.4-7.5 9.4Z"/></svg></span>
+          <span>Duas</span>
+        </button>
+        <button class="nav-btn" data-nav="settings">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4v-.2a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg></span>
+          <span>Settings</span>
+        </button>
+      </nav>
+      <div id="ayah-sheet" class="ayah-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="ayah-sheet-title">
+        <div class="ayah-sheet-backdrop" data-sheet-close></div>
+        <div class="ayah-sheet-card">
+          <div class="ayah-sheet-head">
+            <span class="meta" id="ayah-sheet-title">Ayah</span>
+            <button type="button" class="ayah-sheet-close" data-sheet-close aria-label="Close">×</button>
+          </div>
+          <p class="ayah-sheet-ar" id="ayah-sheet-ar" lang="ar" dir="rtl"></p>
+          <p class="ayah-sheet-en" id="ayah-sheet-en"></p>
+          <p class="ayah-sheet-src">Saheeh International</p>
+          <button type="button" class="btn primary ayah-sheet-play" id="ayah-sheet-play">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
+            <span>Play this ayah</span>
+          </button>
+        </div>
+      </div>
+      <div id="audio-sheet" class="audio-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="audio-sheet-title">
+        <div class="audio-sheet-backdrop" data-audio-close></div>
+        <div class="audio-sheet-card">
+          <div class="ayah-sheet-head">
+            <span class="meta">Now playing</span>
+            <button type="button" class="ayah-sheet-close" data-audio-close aria-label="Close">×</button>
+          </div>
+          <div class="audio-hero">
+            <div class="audio-art" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10 5.1 7.5 4.5 4 4.5v13c3.5 0 6 .6 8 2.1 2-1.5 4.5-2.1 8-2.1v-13c-3.5 0-6 .6-8 2.1Z"/><path d="M12 6.6v13"/><path d="M7.2 8.2c1 0 1.8.3 2.4.7M7.2 11c1 0 1.8.3 2.4.7M16.8 8.2c-1 0-1.8.3-2.4.7M16.8 11c-1 0-1.8.3-2.4.7"/></svg>
+            </div>
+            <h3 class="audio-title" id="audio-sheet-title">The Holy Quran</h3>
+            <p class="audio-sub" id="audio-sheet-sub">Choose a surah to listen</p>
+            <p class="audio-ayah" id="audio-ayah-label">Choose an ayah to begin</p>
+          </div>
+          <div class="audio-progress">
+            <input type="range" id="quran-audio-seek" min="0" max="0" value="0" step="0.1" aria-label="Seek within this ayah" />
+            <div class="audio-times"><span id="quran-audio-current">0:00</span><span id="quran-audio-duration">0:00</span></div>
+          </div>
+          <div class="audio-controls">
+            <button type="button" class="audio-skip" id="quran-audio-prev" aria-label="Previous ayah">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 5.5 9 12l9 6.5Z" fill="currentColor" stroke="none"/><path d="M6 5v14"/></svg>
+            </button>
+            <button type="button" class="audio-play" id="quran-play-big" aria-label="Play recitation">
+              <svg class="ma-ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
+              <svg class="ma-ic-pause hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1.2"/><rect x="13.4" y="5" width="3.6" height="14" rx="1.2"/></svg>
+            </button>
+            <button type="button" class="audio-skip" id="quran-audio-next" aria-label="Next ayah">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5.5 15 12l-9 6.5Z" fill="currentColor" stroke="none"/><path d="M18 5v14"/></svg>
+            </button>
+          </div>
+          <div class="audio-options">
+            <label class="audio-reciter-label">Reciter
+              <select class="audio-reciter" id="quran-reciter-sheet"></select>
+            </label>
+            <label class="audio-repeat">
+              <input type="checkbox" id="quran-audio-repeat" />
+              <span>Repeat surah</span>
+            </label>
+          </div>
+          <p class="audio-note">Recitation streamed from the <a class="source-link" href="https://islamic.network" target="_blank" rel="noopener noreferrer">Islamic Network CDN ↗</a>. An internet connection is needed for audio. Verify recitation with a qualified teacher.</p>
+        </div>
+      </div>
+      <div id="qibla-sheet" class="qibla-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="qibla-sheet-title">
+        <div class="qibla-sheet-backdrop" data-qibla-close></div>
+        <div class="qibla-sheet-card">
+          <div class="ayah-sheet-head">
+            <span class="meta" id="qibla-sheet-title">Qibla direction</span>
+            <button type="button" class="ayah-sheet-close" data-qibla-close aria-label="Close Qibla">×</button>
+          </div>
+          <p class="qibla-loc" id="qibla-sheet-loc">Your location</p>
+
+          <div class="qibla-stage" id="qibla-stage">
+            <div class="qibla-dial">
+              <div class="qibla-rose" id="qibla-rose">
+                <span class="qibla-cardinal n" style="--a:0"><span>N</span></span>
+                <span class="qibla-cardinal e" style="--a:90"><span>E</span></span>
+                <span class="qibla-cardinal s" style="--a:180"><span>S</span></span>
+                <span class="qibla-cardinal w" style="--a:270"><span>W</span></span>
+                <span class="qibla-mark" id="qibla-mark" aria-hidden="true">
+                  <span class="qibla-arm"></span>
+                  <span class="qibla-kaaba-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9.1 12 4.8l7 4.3v7.6L12 21l-7-4.3V9.1Z"/><path d="m5 9.1 7 4.3 7-4.3"/><path d="M12 13.4V21"/><path d="m8.4 6.9 7 4.3"/></svg>
+                  </span>
+                </span>
+              </div>
+              <span class="qibla-pointer" aria-hidden="true"></span>
+              <span class="qibla-hub" aria-hidden="true"><span></span></span>
+            </div>
+          </div>
+
+          <p class="qibla-status" id="qibla-status" aria-live="polite">Checking compass…</p>
+          <p class="qibla-sub" id="qibla-diff">Hold your phone flat and away from metal.</p>
+
+          <div class="qibla-meta">
+            <span><strong id="qibla-deg">—</strong><small>Qibla bearing</small></span>
+            <span><strong id="qibla-heading">—</strong><small>Device heading</small></span>
+          </div>
+
+          <button type="button" class="btn primary qibla-enable" id="qibla-enable">Enable live compass</button>
+
+          <p class="help qibla-help" id="qibla-help">The gold Kaaba marker points to the Qibla. Turn your phone until it reaches the top.</p>
+          <p class="qibla-note">Bearing is calculated from your saved coordinates and true north. If the compass drifts, move away from metal and wave your phone in a figure 8. Confirm locally with your mosque.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/duas-hisn.js?v=2"></script>
+  <script src="js/duas-quran.js?v=2"></script>
+  <script src="js/data.js?v=9"></script>
+  <script src="js/app.js?v=36"></script>
+</body>
+</html>
+
